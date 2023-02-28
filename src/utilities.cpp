@@ -147,16 +147,22 @@ void BruteForce(Point arr[], int n){
     double MIN = arr[0].getDistance(arr[1]);
     Point T1 = arr[0];
     Point T2 = arr[1];
+    int calculation = 0;
+
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
             if(i != j && arr[i].getDistance(arr[j]) < MIN){
                 MIN = arr[i].getDistance(arr[j]);
+                calculation++;
                 T1 = arr[i];
                 T2 = arr[j];
             }
+            calculation++;
         }
     }
+    
     cout << "BRUTE FORCE: " << MIN << endl;
+    cout << "Jumlah perhitungan Euclidean: " << calculation << endl;
     cout << "Titik 1: (" << T1.getX() << ", " << T1.getY() << ", " << T1.getZ() << ")" << endl;
     cout << "Titik 2: (" << T2.getX() << ", " << T2.getY() << ", " << T2.getZ() << ")" << endl;
     
@@ -169,6 +175,7 @@ void DivideAndConquer(Point arr[], int n){
     Point T2 = arr[1];
     int leftMax = round(n / 2) -1;
     int count = 0;
+    int calculation = 0;
 
     //Split array of points
     split(arr, leftSide, rightSide, n);
@@ -182,13 +189,16 @@ void DivideAndConquer(Point arr[], int n){
         LeftT1 = leftSide[0];
         LeftT2 = leftSide[1];
         LeftMin = leftSide[0].getDistance(leftSide[1]);
+        calculation++;
         for(int i = 0; i < round(n / 2); i++){
             for(int j = 0; j < round(n / 2); j++){
                 if(i < j && leftSide[i].getDistance(leftSide[j]) < LeftMin){
                     LeftMin = leftSide[i].getDistance(leftSide[j]);
+                    calculation++;
                     LeftT1 = leftSide[i];
                     LeftT2 = leftSide[j];
                 }
+                calculation++;
             }        
         }
     }
@@ -197,13 +207,16 @@ void DivideAndConquer(Point arr[], int n){
     double RightMin = rightSide[0].getDistance(rightSide[1]);
     Point RightT1 = rightSide[0];
     Point RightT2 = rightSide[1];
+    calculation++;
     for(int i = 0; i < n - round(n / 2); i++){
         for(int j = 0; j < n - round(n / 2); j++){
             if(i < j && rightSide[i].getDistance(rightSide[j]) < RightMin){
                 RightMin = rightSide[i].getDistance(rightSide[j]);
+                calculation++;
                 RightT1 = rightSide[i];
                 RightT2 = rightSide[j];
             }
+            calculation++;
         }        
     }
 
@@ -225,14 +238,17 @@ void DivideAndConquer(Point arr[], int n){
             for(int j = 0; j < n - round(n / 2); j++){
                 if(rightSide[i].getX() >= strip - universalMin && rightSide[i].getX() <= strip + universalMin && leftSide[i].getDistance(rightSide[j]) < universalMin){
                     universalMin = leftSide[i].getDistance(rightSide[j]);
+                    calculation++;
                     T1 = leftSide[i];
                     T2 = rightSide[j];
                 }
+                calculation++;
             }
         }
     }
 
     cout << "DIVIDE & CONQUER: " << universalMin << endl;
+    cout << "Jumlah perhitungan Euclidean: " << calculation << endl;
     cout << "Titik 1: (" << T1.getX() << ", " << T1.getY() << ", " << T1.getZ() << ")" << endl;
     cout << "Titik 2: (" << T2.getX() << ", " << T2.getY() << ", " << T2.getZ() << ")" << endl;
 }
