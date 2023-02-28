@@ -4,8 +4,8 @@
 #include "point.cpp"
 
 #define MAX_ARR 1000
-#define MIN_COOR -500
-#define MAX__COOR 500
+#define MIN_COOR -1000
+#define MAX__COOR 1000
 
 void quicksort(Point arr[], int n);
 

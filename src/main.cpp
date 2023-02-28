@@ -23,7 +23,7 @@ int main(){
     //Opening
     cout << "Selamat datang!\n" << endl;
     cout << "Keterangan:" << endl;
-    cout << "1) Range Koordinat: (-500) - 500\n2) Maximum titik: 1000\n" << endl;
+    cout << "1) Range Koordinat: (-1000) - 1000\n2) Maximum titik: 1000\n" << endl;
     cout << "Masukan jumlah titik: ";
     cin >> n;
     cout << endl;
@@ -59,6 +59,7 @@ int main(){
     stop_s = Clock::now();
     exec = stop_s - start_s;
     cout << "Execution time: " << exec.count() << " ms" << endl << endl;
+    cout << "Processor used: AMD Ryzen 5 5600U with Radeon Graphics 2.30 GHz" << endl;
  
     return 0;
 }
